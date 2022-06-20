@@ -2,6 +2,10 @@
 
 import {ref} from "vue"
 import axios from "axios"
+    import { useRouter } from 'vue-router';
+    
+    const router = useRouter();
+
 
 function signup( mail, password){
  if(mail, password){
@@ -9,6 +13,7 @@ function signup( mail, password){
         email: mail,
         password: password
    })
+   router.push({name: "login"});
  }
 }
 
