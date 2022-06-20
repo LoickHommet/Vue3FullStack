@@ -28,10 +28,22 @@ async function connect(email, password){
     }
 }
 
+async function monCompte(){
+    if (localStorage.getItem('cours-token')) {
+        const response = await axios.post('http://localhost:3001/moncompte').then(res => res).catch(err => err);
+        if (response.status !== 200) {
+            localStorage.removeItem('cours-token');
+            return null;
+        }
+        user.value = {"id": response.data.user.id, "email": response.data.user.email};
+    }
+}
+
 
 export function useUserStore(){
     return {
         user,
-        connect
+        connect,
+        monCompte
     }
 }
