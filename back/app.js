@@ -101,6 +101,28 @@ app.post('/login', async (req, res) => {
     res.header('x-auth-token', token).status(200).send({user: user});
 });
 
+function authenticationToken(req, res, next){
+    const token = req.header('x-auth-token');
+    if (!token) {
+        throw new Error('Vous devez vous connecté pour accéder à cette ressource');
+    }
+    try {
+        const userInToken = jwt.verify(token, process.env.SECRET_KEY);
+        req.user = userInToken;
+        next();
+    } catch (error) {
+        throw new Error('Le token que vous avez fourni est invalide');
+    }
+}
+
+
+
+app.post('/moncompte', [authenticationToken], async (req, res) => {
+    const user = await User.findById(req.user.id);
+    console.log(user);
+    res.status(200).send({user: user});
+});
+
 
 if (process.env.NODE_ENV !== 'test') 
 {
