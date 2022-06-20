@@ -1,15 +1,17 @@
 <script setup>
    import { useRouter } from 'vue-router';
-    
-    const router = useRouter();
+   import { useUserStore } from '@/services/userstore';
 
+    const router = useRouter();
+    const {user} = useUserStore();
+  console.log(user)
 </script>
 
 <template>
     <div>
         <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-
+ <h3 class="navbar-brand">{{!user ? "Welcome" : `Hey ${user.email}`}}</h3>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
