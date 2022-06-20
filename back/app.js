@@ -78,6 +78,29 @@ app.post('/signup', async (req, res) => {
     }
 })
 
+app.post('/login', async (req, res) => {
+    const payload = req.body;
+    const scheme = Joi.object({
+        email: Joi.string().max(255).email().required(),
+        password: Joi.string().max(255).required()
+    });
+    const {value, error} = scheme.validate(payload);
+    if (error) {
+        throw new Error(error.details[0].message);
+    }
+    const user = await User.findOne({email: value.email});
+    //const {id, entity} = Users.findBy('email', value.email);
+    if (!user) {
+        throw new Error("Ce compte n'existe pas");
+    }
+    const goodHash = await bcrypt.compare(payload.password, user.password);
+    if (!goodHash) {
+        throw new Error('Mot de passe invalide');
+    }
+    const token = jwt.sign({id: user.id}, process.env.SECRET_KEY);
+    res.header('x-auth-token', token).status(200).send({user: user});
+});
+
 
 if (process.env.NODE_ENV !== 'test') 
 {
