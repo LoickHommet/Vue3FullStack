@@ -5,6 +5,7 @@ import aPropo from "@/components/aPropo.vue"
 import login from "@/components/login.vue"
 import register from "@/components/register.vue"
 import todo from "@/components/todo.vue"
+import hazard from "@/components/hazard.vue"
 
 
 const router = createRouter({
@@ -34,6 +35,11 @@ const router = createRouter({
             path: "/register",
             name: "register",
             component: register
+        },
+        {
+            path: "/hazard",
+            name: "hazard",
+            component: hazard
         }
     
     ]
