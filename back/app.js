@@ -123,6 +123,22 @@ app.post('/moncompte', [authenticationToken], async (req, res) => {
     res.status(200).send({user: user});
 });
 
+// Tache 
+const taskSchema = new mongoose.Schema({
+    id: Number,
+    description: String,
+});
+
+
+const Task = mongoose.model('Task', taskSchema);
+
+app.get('/task', async (req, res) => {
+    const taches = await Task.find();
+    //const taches = Taches.getAll();
+    res.status(200).send(taches);
+});
+
+
 
 if (process.env.NODE_ENV !== 'test') 
 {
