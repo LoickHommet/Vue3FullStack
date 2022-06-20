@@ -7,7 +7,7 @@
 
     function deconnexion(){
         disconnect();
-        router.push({name: "acceuil"});
+        router.push({name: "accueil"});
     }
   console.log(user)
 </script>
@@ -28,16 +28,19 @@
         <li class="nav-item">
          <RouterLink :to="{name: 'aPropo'}">A propo</RouterLink> 
         </li>
-        <li class="nav-item">
-         <RouterLink :to="{name: 'todo'}">Todolist</RouterLink> 
+        <li class="nav-item" style="padding-left: 25px;">
+         <RouterLink :to="{name: 'todo'}" v-if="user" >  Todolist</RouterLink> 
+        </li>
+        <li class="nav-item" style="padding-left: 25px;">
+         <RouterLink :to="{name: 'hazard'}" >  hazard</RouterLink> 
         </li>
 
        
       </ul>
   
-    <RouterLink v-bind:to="{name: 'login'}"  class="btn btn-outline-success">Login</RouterLink> 
-    <RouterLink v-bind:to="{name: 'register'}" class="btn btn-outline-success">Inscription</RouterLink> 
-     <button class="btn btn-danger" @click="deconnexion()">Déconnexion</button>
+    <RouterLink v-bind:to="{name: 'login'}"  class="btn btn-outline-success" v-if="!user">Login</RouterLink> 
+    <RouterLink v-bind:to="{name: 'register'}" class="btn btn-outline-success"  v-if="!user">Inscription</RouterLink> 
+     <button class="btn btn-danger" @click="deconnexion()" v-if="user">Déconnexion</button>
   
 
     </div>
