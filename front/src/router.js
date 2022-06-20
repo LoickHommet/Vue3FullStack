@@ -39,7 +39,7 @@ const router = createRouter({
         {
             path: "/hazard",
             name: "hazard",
-            component: hazard
+            component: hazard   
         }
     
     ]
