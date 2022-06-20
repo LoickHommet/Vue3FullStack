@@ -1,5 +1,7 @@
 <script setup>
-
+   import { useRouter } from 'vue-router';
+    
+    const router = useRouter();
 
 </script>
 
@@ -17,17 +19,17 @@
         <RouterLink to="/">Accueil   </RouterLink>
         </li>
         <li class="nav-item">
-         <RouterLink >A propo</RouterLink> 
+         <RouterLink :to="{name: 'aPropo'}">A propo</RouterLink> 
         </li>
         <li class="nav-item">
-         <RouterLink>Todolist</RouterLink> 
+         <RouterLink :to="{name: 'todo'}">Todolist</RouterLink> 
         </li>
 
        
       </ul>
   
-    <RouterLink   class="btn btn-outline-success">Login</RouterLink> 
-    <RouterLink  class="btn btn-outline-success">Inscription</RouterLink> 
+    <RouterLink v-bind:to="{name: 'login'}"  class="btn btn-outline-success">Login</RouterLink> 
+    <RouterLink v-bind:to="{name: 'register'}" class="btn btn-outline-success">Inscription</RouterLink> 
   
 
     </div>
