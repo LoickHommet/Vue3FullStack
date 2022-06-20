@@ -41,7 +41,7 @@ async function monCompte(){
 function disconnect(){
     if (user) {
         user.value = null;
-        localStorage.removeItem('cours-user-name');
+        localStorage.removeItem('cours-token');
  
     }
 }

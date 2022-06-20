@@ -7,7 +7,7 @@
 
     function deconnexion(){
         disconnect();
-        router.push({name: "acceuil"});
+        router.push({name: "accueil"});
     }
   console.log(user)
 </script>
