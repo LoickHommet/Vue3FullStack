@@ -1,5 +1,17 @@
 <script setup>
 
+import {ref} from "vue"
+import axios from "axios"
+
+function signup( mail, password){
+ if(mail, password){
+   axios.post("http://localhost:3001/signup", {
+        email: mail,
+        password: password
+   })
+ }
+}
+
 </script>
 
 <template>
