@@ -3,7 +3,12 @@
    import { useUserStore } from '@/services/userstore';
 
     const router = useRouter();
-    const {user} = useUserStore();
+    const {user,disconnect} = useUserStore();
+
+    function deconnexion(){
+        disconnect();
+        router.push({name: "acceuil"});
+    }
   console.log(user)
 </script>
 
@@ -32,6 +37,7 @@
   
     <RouterLink v-bind:to="{name: 'login'}"  class="btn btn-outline-success">Login</RouterLink> 
     <RouterLink v-bind:to="{name: 'register'}" class="btn btn-outline-success">Inscription</RouterLink> 
+     <button class="btn btn-danger" @click="deconnexion()">Déconnexion</button>
   
 
     </div>
