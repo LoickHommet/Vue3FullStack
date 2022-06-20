@@ -38,12 +38,18 @@ async function monCompte(){
         user.value = {"id": response.data.user.id, "email": response.data.user.email};
     }
 }
-
-
+function disconnect(){
+    if (user) {
+        user.value = null;
+        localStorage.removeItem('cours-user-name');
+ 
+    }
+}
 export function useUserStore(){
     return {
         user,
         connect,
-        monCompte
+        monCompte,
+        disconnect
     }
 }
